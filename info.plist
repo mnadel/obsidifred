@@ -141,6 +141,44 @@
 			<key>variable</key>
 			<string>vault_path</string>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>default</key>
+				<false/>
+				<key>required</key>
+				<false/>
+				<key>text</key>
+				<string></string>
+			</dict>
+			<key>description</key>
+			<string></string>
+			<key>label</key>
+			<string>Debug</string>
+			<key>type</key>
+			<string>checkbox</string>
+			<key>variable</key>
+			<string>debug</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>default</key>
+				<false/>
+				<key>required</key>
+				<false/>
+				<key>text</key>
+				<string></string>
+			</dict>
+			<key>description</key>
+			<string>Else use mmap for reading files</string>
+			<key>label</key>
+			<string>Case-insensitive searching</string>
+			<key>type</key>
+			<string>checkbox</string>
+			<key>variable</key>
+			<string>case_insensitive</string>
+		</dict>
 	</array>
 	<key>version</key>
 	<string>0.1</string>
