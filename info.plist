@@ -64,7 +64,7 @@
 				<key>scriptfile</key>
 				<string>search.py</string>
 				<key>subtext</key>
-				<string>Case Sensitive: {var:case_sensitive}</string>
+				<string></string>
 				<key>title</key>
 				<string>Full-Text Search</string>
 				<key>type</key>
@@ -107,8 +107,14 @@ Simple full-text search for Shimmering Obsidian via `of`.
 ## Installing
 
 1. Install Obsidifred
-2. Install [Shimmering Obsidian](https://github.com/chrisgrieser/shimmering-obsidian)
-3. Configure Obsidifred to specify vault path (using the same as Shimmering Obsidian's)</string>
+1. Install [Shimmering Obsidian](https://github.com/chrisgrieser/shimmering-obsidian)
+1. Configure Obsidifred to specify vault path (using the same as Shimmering Obsidian's)
+
+## Behavior
+
+If you enable [RipGrep](https://github.com/BurntSushi/ripgrep) then `rg` needs to be in your path, and we pass along the `--smart-case` flag.
+
+Otherwise, we'll do Python-native smart case searching. If you're doing a case sensitive search we'll open the file, read its contents, convert to lowercase, and search for your term. If you're doing a case insensitive search we'll read the file via `mmap` to find your term.</string>
 	<key>uidata</key>
 	<dict>
 		<key>6CBDCB34-02C1-4E3C-877D-23E96D37848F</key>
@@ -172,24 +178,24 @@ Simple full-text search for Shimmering Obsidian via `of`.
 			<key>config</key>
 			<dict>
 				<key>default</key>
-				<true/>
+				<false/>
 				<key>required</key>
 				<false/>
 				<key>text</key>
 				<string></string>
 			</dict>
 			<key>description</key>
-			<string>(Uses mmap; if there's performance issues please try checking this option.)</string>
+			<string>Uses smart case searching. The rg binary needs to be in the path.</string>
 			<key>label</key>
-			<string>Case Sensitive Searching</string>
+			<string>Use Ripgrep</string>
 			<key>type</key>
 			<string>checkbox</string>
 			<key>variable</key>
-			<string>case_sensitive</string>
+			<string>ripgrep</string>
 		</dict>
 	</array>
 	<key>version</key>
-	<string>0.3</string>
+	<string>0.4</string>
 	<key>webaddress</key>
 	<string>https://nadel.org</string>
 </dict>
