@@ -64,7 +64,7 @@
 				<key>scriptfile</key>
 				<string>search.py</string>
 				<key>subtext</key>
-				<string>Search is case-sensitive!</string>
+				<string>Case Sensitive: {var:case_sensitive}</string>
 				<key>title</key>
 				<string>Full-Text Search</string>
 				<key>type</key>
@@ -100,7 +100,15 @@
 		</dict>
 	</array>
 	<key>readme</key>
-	<string></string>
+	<string># Obsidifred
+
+Simple full-text search for Shimmering Obsidian via `of`.
+
+## Installing
+
+1. Install Obsidifred
+2. Install [Shimmering Obsidian](https://github.com/chrisgrieser/shimmering-obsidian)
+3. Configure Obsidifred to specify vault path (using the same as Shimmering Obsidian's)</string>
 	<key>uidata</key>
 	<dict>
 		<key>6CBDCB34-02C1-4E3C-877D-23E96D37848F</key>
@@ -164,24 +172,24 @@
 			<key>config</key>
 			<dict>
 				<key>default</key>
-				<false/>
+				<true/>
 				<key>required</key>
 				<false/>
 				<key>text</key>
 				<string></string>
 			</dict>
 			<key>description</key>
-			<string>Else use mmap for reading files</string>
+			<string>(Uses mmap; if there's performance issues please try checking this option.)</string>
 			<key>label</key>
-			<string>Case-insensitive searching</string>
+			<string>Case Sensitive Searching</string>
 			<key>type</key>
 			<string>checkbox</string>
 			<key>variable</key>
-			<string>case_insensitive</string>
+			<string>case_sensitive</string>
 		</dict>
 	</array>
 	<key>version</key>
-	<string>0.1</string>
+	<string>0.3</string>
 	<key>webaddress</key>
 	<string>https://nadel.org</string>
 </dict>
