@@ -13,8 +13,8 @@ print("searching", basedir, "for", needle, file=sys.stderr)
 match_list = []
 
 if len(needle) < 3:
-    print(json.dumps({"items": []}))
-    sys.exit(0)
+	print(json.dumps({"items": []}))
+	sys.exit(0)
 
 def matches(fpath):
 	with open(fpath, mode="r", encoding="utf-8") as f:
@@ -24,16 +24,15 @@ def matches(fpath):
 		return s.find(needle) != -1
 
 for root, dirs, files in os.walk(basedir):
-    for file in files:
-        if file.endswith(".md"):
-            fpath = os.path.join(root, file)
-            if matches(fpath):
-                relpath = root[len(basedir)+1:]
-                match_list.append({
+	for file in files:
+		if file.endswith(".md"):
+			fpath = os.path.join(root, file)
+			if matches(fpath):
+				relpath = root[len(basedir)+1:]
+				match_list.append({
 					"title": file[:-3],
 					"subtitle": relpath,
 					"arg": os.path.join("./", relpath, file)
 				})
 
 print(json.dumps({"items": match_list}))
-
