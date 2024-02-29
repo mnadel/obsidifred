@@ -9,6 +9,7 @@ import subprocess
 use_ripgrep = "ripgrep" in os.environ
 basedir = os.environ["vault_path"]
 term = " ".join(sys.argv[1:])
+
 case_sensitive = term.lower() != term # use smart case searching (if there's an uppercase letter then it's case sensitive)
 needle = str.encode(term) if case_sensitive else term
 
@@ -65,3 +66,4 @@ def searcher():
 	return ripgrep_search if use_ripgrep else native_search
 
 print(json.dumps({"items": searcher()(basedir, needle)}))
+

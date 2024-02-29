@@ -3,7 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>bundleid</key>
-	<string>org.nadel.alfred.obsidian</string>
+	<string>org.nadel.alfred.obsidifred</string>
+	<key>category</key>
+	<string>Productivity</string>
 	<key>connections</key>
 	<dict>
 		<key>E17CD88B-1440-44C5-8EFF-0D19D25280AA</key>
@@ -46,13 +48,13 @@
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>keyword</key>
-				<string>of</string>
+				<string>{var:keyword}</string>
 				<key>queuedelaycustom</key>
 				<integer>3</integer>
 				<key>queuedelayimmediatelyinitially</key>
 				<true/>
 				<key>queuedelaymode</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>queuemode</key>
 				<integer>2</integer>
 				<key>runningsubtext</key>
@@ -138,6 +140,27 @@ Otherwise, we'll do Python-native smart case searching. If you're doing a case s
 			<key>config</key>
 			<dict>
 				<key>default</key>
+				<string>of</string>
+				<key>placeholder</key>
+				<string></string>
+				<key>required</key>
+				<true/>
+				<key>trim</key>
+				<true/>
+			</dict>
+			<key>description</key>
+			<string></string>
+			<key>label</key>
+			<string>Trigger Keyword</string>
+			<key>type</key>
+			<string>textfield</string>
+			<key>variable</key>
+			<string>keyword</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>default</key>
 				<string></string>
 				<key>filtermode</key>
 				<integer>1</integer>
@@ -195,8 +218,8 @@ Otherwise, we'll do Python-native smart case searching. If you're doing a case s
 		</dict>
 	</array>
 	<key>version</key>
-	<string>0.4</string>
+	<string>0.4.1</string>
 	<key>webaddress</key>
-	<string>https://nadel.org</string>
+	<string>https://github.com/mnadel/obsidifred</string>
 </dict>
 </plist>
