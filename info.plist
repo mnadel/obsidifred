@@ -218,7 +218,7 @@ Otherwise, we'll do Python-native smart case searching. If you're doing a case s
 		</dict>
 	</array>
 	<key>version</key>
-	<string>0.4.1</string>
+	<string>0.4.2</string>
 	<key>webaddress</key>
 	<string>https://github.com/mnadel/obsidifred</string>
 </dict>

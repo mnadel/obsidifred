@@ -10,7 +10,9 @@ use_ripgrep = "ripgrep" in os.environ
 basedir = os.environ["vault_path"]
 term = " ".join(sys.argv[1:])
 
-case_sensitive = term.lower() != term # use smart case searching (if there's an uppercase letter then it's case sensitive)
+# use smart case searching (if there's an uppercase letter then it's case sensitive)
+# only applicable if we're not using ripgrep, which uses smart case by default
+case_sensitive = term.lower() != term 
 needle = str.encode(term) if case_sensitive else term
 
 if "debug" in os.environ:
@@ -19,10 +21,10 @@ if "debug" in os.environ:
 def ripgrep_search(basedir, needle):
 	match_list = []
 
-	p = subprocess.run(["rg", "-lS", needle, basedir], capture_output=True)
+	p = subprocess.run(["rg", "--type", "md", "-lS", needle, basedir], capture_output=True)
 	if p.returncode != 0:
 		sys.exit(p.returncode)
-	for file in [x for x in p.stdout.decode().split("\n") if x.lower().endswith(".md")]:
+	for file in [x for x in p.stdout.decode().split("\n") if len(x) > 0]:
 		_, filename = os.path.split(file)
 		relpath = file.removeprefix(basedir)[1:]
 		intermediate = relpath.removesuffix(filename)[:-1]
