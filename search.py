@@ -21,7 +21,7 @@ if "debug" in os.environ:
 def ripgrep_search(basedir, needle):
 	match_list = []
 
-	p = subprocess.run(["rg", "--type", "md", "-lS", needle, basedir], capture_output=True)
+	p = subprocess.run(["rg", "--no-ignore-vcs", "--type", "md", "-lS", needle, basedir], capture_output=True)
 	if p.returncode != 0:
 		sys.exit(p.returncode)
 	for file in [x for x in p.stdout.decode().split("\n") if len(x) > 0]:
