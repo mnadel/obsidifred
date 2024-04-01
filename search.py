@@ -2,28 +2,19 @@
 
 import os
 import sys
-import mmap
 import json
 import subprocess
 
-use_ripgrep = "ripgrep" in os.environ
 basedir = os.environ["vault_path"]
-term = " ".join(sys.argv[1:])
+query = " ".join(sys.argv[1:])
 
-# use smart case searching (if there's an uppercase letter then it's case sensitive)
-# only applicable if we're not using ripgrep, which uses smart case by default
-case_sensitive = term.lower() != term 
-needle = str.encode(term) if case_sensitive else term
-
-if "debug" in os.environ:
-	print("searching", basedir, "for", needle, file=sys.stderr)
-
-def ripgrep_search(basedir, needle):
-	match_list = []
-
+def rg(basedir, needle):
 	p = subprocess.run(["rg", "--no-ignore-vcs", "--type", "md", "-lS", needle, basedir], capture_output=True)
 	if p.returncode != 0:
-		sys.exit(p.returncode)
+		return []
+	
+	match_list = []
+
 	for file in [x for x in p.stdout.decode().split("\n") if len(x) > 0]:
 		_, filename = os.path.split(file)
 		relpath = file.removeprefix(basedir)[1:]
@@ -36,28 +27,14 @@ def ripgrep_search(basedir, needle):
 
 	return match_list
 
-def contains(fpath, term):
-	if term.lower() in fpath.lower():
-		return True
-
-	if os.path.getsize(fpath) < 1:
-		return False
-
-	with open(fpath, mode="r", encoding="utf-8") as f:
-		if case_sensitive:
-			s = mmap.mmap(f.fileno(), 0, access=mmap.ACCESS_READ)
-			return s.find(term) != -1
-		else:
-			return term.lower() in f.read().lower()
-
-def native_search(basedir, needle):
+def search_titles(basedir, needle):
 	match_list = []
 
 	for root, dirs, files in os.walk(basedir):
 		for file in files:
 			if file.lower().endswith(".md"):
 				fpath = os.path.join(root, file)
-				if contains(fpath, needle):
+				if  needle.lower() in fpath.lower():
 					relpath = root[len(basedir)+1:]
 					match_list.append({
 						"title": file[:-3],
@@ -67,8 +44,20 @@ def native_search(basedir, needle):
 	
 	return match_list
 
-def searcher():
-	return ripgrep_search if use_ripgrep else native_search
+def search(basedir, query):
+	terms = query.split(" ")
+	matches = {}
+	counts = {}
 
-print(json.dumps({"items": searcher()(basedir, needle)}))
+	for term in terms:
+		for match in rg(basedir, term) + search_titles(basedir, term):
+			k = match["arg"]
+			matches[k] = match
+			if k in counts:
+				counts[k] = counts[k] + 1
+			else:
+				counts[k] = 1
+	
+	return [v for k,v in matches.items() if counts[k] >= len(terms)]
 
+print(json.dumps({"items": search(basedir, query)}))
