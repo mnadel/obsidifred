@@ -4,8 +4,6 @@
 <dict>
 	<key>bundleid</key>
 	<string>org.nadel.alfred.obsidifred</string>
-	<key>category</key>
-	<string>Productivity</string>
 	<key>connections</key>
 	<dict>
 		<key>E17CD88B-1440-44C5-8EFF-0D19D25280AA</key>
@@ -13,6 +11,19 @@
 			<dict>
 				<key>destinationuid</key>
 				<string>6CBDCB34-02C1-4E3C-877D-23E96D37848F</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>F53EA2AC-4304-4829-BBAE-96448E47A52C</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>DB4FFE7A-710B-426D-9D3A-ECCEAD7F48A4</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -32,6 +43,25 @@
 	<string>Obsidifred</string>
 	<key>objects</key>
 	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>externaltriggerid</key>
+				<string>return-only-action</string>
+				<key>passinputasargument</key>
+				<true/>
+				<key>passvariables</key>
+				<true/>
+				<key>workflowbundleid</key>
+				<string>de.chris-grieser.shimmering-obsidian</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.callexternaltrigger</string>
+			<key>uid</key>
+			<string>6CBDCB34-02C1-4E3C-877D-23E96D37848F</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
@@ -84,19 +114,42 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>externaltriggerid</key>
-				<string>return-only-action</string>
-				<key>passinputasargument</key>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>keyword</key>
+				<string>os</string>
+				<key>subtext</key>
+				<string></string>
+				<key>text</key>
+				<string>Search Obsidian</string>
+				<key>withspace</key>
 				<true/>
-				<key>passvariables</key>
-				<true/>
-				<key>workflowbundleid</key>
-				<string>de.chris-grieser.shimmering-obsidian</string>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.output.callexternaltrigger</string>
+			<string>alfred.workflow.input.keyword</string>
 			<key>uid</key>
-			<string>6CBDCB34-02C1-4E3C-877D-23E96D37848F</string>
+			<string>F53EA2AC-4304-4829-BBAE-96448E47A52C</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>browser</key>
+				<string></string>
+				<key>skipqueryencode</key>
+				<true/>
+				<key>skipvarencode</key>
+				<true/>
+				<key>spaces</key>
+				<string></string>
+				<key>url</key>
+				<string>obsidian://search?query={query}</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.openurl</string>
+			<key>uid</key>
+			<string>DB4FFE7A-710B-426D-9D3A-ECCEAD7F48A4</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -126,12 +179,26 @@ Otherwise, we'll do Python-native smart case searching. If you're doing a case s
 			<key>ypos</key>
 			<real>55</real>
 		</dict>
+		<key>DB4FFE7A-710B-426D-9D3A-ECCEAD7F48A4</key>
+		<dict>
+			<key>xpos</key>
+			<real>280</real>
+			<key>ypos</key>
+			<real>180</real>
+		</dict>
 		<key>E17CD88B-1440-44C5-8EFF-0D19D25280AA</key>
 		<dict>
 			<key>xpos</key>
 			<real>35</real>
 			<key>ypos</key>
 			<real>55</real>
+		</dict>
+		<key>F53EA2AC-4304-4829-BBAE-96448E47A52C</key>
+		<dict>
+			<key>xpos</key>
+			<real>35</real>
+			<key>ypos</key>
+			<real>180</real>
 		</dict>
 	</dict>
 	<key>userconfigurationconfig</key>
@@ -218,7 +285,7 @@ Otherwise, we'll do Python-native smart case searching. If you're doing a case s
 		</dict>
 	</array>
 	<key>version</key>
-	<string>0.4.3</string>
+	<string>1.0</string>
 	<key>webaddress</key>
 	<string>https://github.com/mnadel/obsidifred</string>
 </dict>
