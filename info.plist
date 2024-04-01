@@ -287,28 +287,9 @@ Otherwise, we'll do Python-native smart case searching. If you're doing a case s
 			<key>variable</key>
 			<string>debug</string>
 		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>default</key>
-				<false/>
-				<key>required</key>
-				<false/>
-				<key>text</key>
-				<string></string>
-			</dict>
-			<key>description</key>
-			<string>Uses smart case searching. The rg binary needs to be in the path.</string>
-			<key>label</key>
-			<string>Use Ripgrep</string>
-			<key>type</key>
-			<string>checkbox</string>
-			<key>variable</key>
-			<string>ripgrep</string>
-		</dict>
 	</array>
 	<key>version</key>
-	<string>1.3</string>
+	<string>1.3.1</string>
 	<key>webaddress</key>
 	<string>https://github.com/mnadel/obsidifred</string>
 </dict>
