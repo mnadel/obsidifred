@@ -140,7 +140,7 @@
 				<key>browser</key>
 				<string></string>
 				<key>skipqueryencode</key>
-				<true/>
+				<false/>
 				<key>skipvarencode</key>
 				<true/>
 				<key>spaces</key>
@@ -308,7 +308,7 @@ Otherwise, we'll do Python-native smart case searching. If you're doing a case s
 		</dict>
 	</array>
 	<key>version</key>
-	<string>1.1</string>
+	<string>1.2</string>
 	<key>webaddress</key>
 	<string>https://github.com/mnadel/obsidifred</string>
 </dict>

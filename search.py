@@ -37,6 +37,9 @@ def ripgrep_search(basedir, needle):
 	return match_list
 
 def contains(fpath, term):
+	if term.lower() in fpath.lower():
+		return True
+
 	if os.path.getsize(fpath) < 1:
 		return False
 
