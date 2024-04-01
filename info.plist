@@ -4,6 +4,8 @@
 <dict>
 	<key>bundleid</key>
 	<string>org.nadel.alfred.obsidifred</string>
+	<key>category</key>
+	<string>Productivity</string>
 	<key>connections</key>
 	<dict>
 		<key>E17CD88B-1440-44C5-8EFF-0D19D25280AA</key>
@@ -78,7 +80,7 @@
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>keyword</key>
-				<string>{var:keyword}</string>
+				<string>{var:keyword_fulltext}</string>
 				<key>queuedelaycustom</key>
 				<integer>3</integer>
 				<key>queuedelayimmediatelyinitially</key>
@@ -117,7 +119,7 @@
 				<key>argumenttype</key>
 				<integer>1</integer>
 				<key>keyword</key>
-				<string>os</string>
+				<string>{var:keyword_inapp}</string>
 				<key>subtext</key>
 				<string></string>
 				<key>text</key>
@@ -218,11 +220,32 @@ Otherwise, we'll do Python-native smart case searching. If you're doing a case s
 			<key>description</key>
 			<string></string>
 			<key>label</key>
-			<string>Trigger Keyword</string>
+			<string>Full-Text Search Keyword</string>
 			<key>type</key>
 			<string>textfield</string>
 			<key>variable</key>
-			<string>keyword</string>
+			<string>keyword_fulltext</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>default</key>
+				<string>os</string>
+				<key>placeholder</key>
+				<string></string>
+				<key>required</key>
+				<false/>
+				<key>trim</key>
+				<true/>
+			</dict>
+			<key>description</key>
+			<string></string>
+			<key>label</key>
+			<string>In-App Search Keyword</string>
+			<key>type</key>
+			<string>textfield</string>
+			<key>variable</key>
+			<string>keyword_inapp</string>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -285,7 +308,7 @@ Otherwise, we'll do Python-native smart case searching. If you're doing a case s
 		</dict>
 	</array>
 	<key>version</key>
-	<string>1.0</string>
+	<string>1.1</string>
 	<key>webaddress</key>
 	<string>https://github.com/mnadel/obsidifred</string>
 </dict>
