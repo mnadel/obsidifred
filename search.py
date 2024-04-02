@@ -46,7 +46,9 @@ def search_titles(basedir, needle):
 
 def search(basedir, query):
 	terms = query.split(" ")
+    # map of filename to alfred json object
 	matches = {}
+    # map of filename to number of terms matched
 	counts = {}
 
 	for term in terms:
@@ -58,6 +60,7 @@ def search(basedir, query):
 			else:
 				counts[k] = 1
 	
+    # return a list of alfred objects that which matched all our terms
 	return [v for k,v in matches.items() if counts[k] >= len(terms)]
 
 print(json.dumps({"items": search(basedir, query)}))
