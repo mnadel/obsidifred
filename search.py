@@ -28,27 +28,27 @@ def rg(basedir, needle):
 	return match_list
 
 def search_titles(basedir, needle):
+	needle_lower = needle.lower()
 	match_list = []
 
-	for root, dirs, files in os.walk(basedir):
-		for file in files:
-			if file.lower().endswith(".md"):
-				fpath = os.path.join(root, file)
-				if  needle.lower() in fpath.lower():
-					relpath = root[len(basedir)+1:]
-					match_list.append({
-						"title": file[:-3],
-						"subtitle": relpath,
-						"arg": os.path.join("./", relpath, file)
-					})
+	for root, _, files in os.walk(basedir):
+		for file in [f for f in files if f.lower().endswith(".md")]:
+			fpath = os.path.join(root, file)
+			if needle_lower in fpath.lower():
+				relpath = root[len(basedir)+1:]
+				match_list.append({
+					"title": file[:-3],
+					"subtitle": relpath,
+					"arg": os.path.join("./", relpath, file)
+				})
 	
 	return match_list
 
 def search(basedir, query):
-	terms = query.split(" ")
-    # map of filename to alfred json object
+	terms = set(query.split(" "))
+	# map of filename to alfred json object
 	matches = {}
-    # map of filename to number of terms matched
+	# map of filename to number of terms matched
 	counts = {}
 
 	for term in terms:
@@ -60,7 +60,7 @@ def search(basedir, query):
 			else:
 				counts[k] = 1
 	
-    # return a list of alfred objects that which matched all our terms
+	# return a list of alfred objects that matched all our terms
 	return [v for k,v in matches.items() if counts[k] >= len(terms)]
 
 print(json.dumps({"items": search(basedir, query)}))
